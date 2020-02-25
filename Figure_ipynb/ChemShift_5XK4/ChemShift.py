@@ -5,9 +5,11 @@ def LoadPred(file_name):
     f = open(file_name)
     r = f.readlines()
     content = []
-    for i in range(27,len(r)):
+    for i in range(28,len(r)):
         content.append(r[i].split())
     return content
+
+    # The number 28 here depends on the chain number of the protein predicted
 
 
 def LoadPred_CA(file_name):
@@ -153,6 +155,19 @@ def RMSD(list_1,list_2):
                 pass
         return np.sqrt(rmsd/count)
 
+
+
+
+
+def AvgChemShift_CA_2(File_1,File_2,File_3,File_4,File_5):
+    CA_ShiftSim1 = LoadPred_CA_2(File_1)
+    CA_ShiftSim2 = LoadPred_CA_2(File_2)
+    CA_ShiftSim3 = LoadPred_CA_2(File_3)
+    CA_ShiftSim4 = LoadPred_CA_2(File_4)
+    CA_ShiftSim5 = LoadPred_CA_2(File_5)
+
+    CA_ShiftAvg = [(CA_ShiftSim1[i]+CA_ShiftSim2[i]+CA_ShiftSim3[i]+CA_ShiftSim4[i]+CA_ShiftSim5[i])/5 for i in range(len(CA_ShiftSim1))]
+    return CA_ShiftAvg
 
 
 
